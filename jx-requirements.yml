@@ -1,34 +1,74 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/martijnburger/env-teamplanner-dev
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: teamplanner-1
+  environmentGitOwner: martijnburger
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: teamplanner-260912
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west4-a
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: 35.204.209.127.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.204.209.127.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://teamplanner-1-logs-7c4d89f9-84d5-4bc4-8dea-bb475a04037c
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://teamplanner-1-reports-1e86dab4-42c1-47a6-b1ce-0b3add7c1
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://teamplanner-1-repository-bb69dce0-3123-4d9f-b865-7357c8
+vault: {}
+velero: {}
 versionStream:
-  ref: "master"
+  ref: v1.0.235
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow

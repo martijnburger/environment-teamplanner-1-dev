@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:teamplanner-1/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: martijnburger@paston.nl
+  token: vault:teamplanner-1/pipelineUser:token
+  username: martijnburger
+prow:
+  hmacToken: vault:teamplanner-1/prow:hmacToken
